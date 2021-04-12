@@ -1,0 +1,54 @@
+﻿<Window x:Class="NewMyPaint.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewMyPaint"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="Undo" Executed="UndoCommand" CanExecute="CanExecuteUndoCommand"/>
+        <CommandBinding Command="Redo" Executed="RedoCommand" CanExecute="CanExecuteRedoCommand"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Gesture="Control+Z" Command="Undo"></KeyBinding>
+        <KeyBinding Gesture="Control+Y" Command="Redo"></KeyBinding>
+    </Window.InputBindings>
+    <Canvas Name="paintCanvas" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" AllowDrop="True" Drop="paintCanvas_Drop">
+        <Rectangle x:Name="BackgroundColor" Width="{Binding ActualWidth, ElementName=paintCanvas}"
+                   Height="{Binding ActualHeight, ElementName=paintCanvas}"
+                   Fill="White" MouseDown="Mouse_DownInsideShape">
+        </Rectangle>
+        <Image x:Name="ImagePreviewer" Margin="120,0,0,0"></Image>
+        <StackPanel Orientation="Vertical" Height="{Binding ActualHeight, ElementName=paintCanvas}" Width="120" Background="#F0F0F0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Click="Open_File" Header="_Open" />
+                    <MenuItem Click="Save_File" Header="_Save" />
+                    <MenuItem Click="Save_FileAs" Header="_Save As"></MenuItem>
+                </MenuItem>
+            </Menu>
+            <GroupBox Header="Pen" Margin="10" Padding="10" BorderBrush="Gray">
+                <StackPanel>
+                    <ComboBox x:Name="Size" SelectedIndex="0">
+                        <ComboBoxItem Tag="1" Content="1 px"></ComboBoxItem>
+                        <ComboBoxItem Tag="3" Content="3 px"></ComboBoxItem>
+                        <ComboBoxItem Tag="5" Content="5 px"></ComboBoxItem>
+                        <ComboBoxItem Tag="8" Content="8 px"></ComboBoxItem>
+                    </ComboBox>
+                    <Button x:Name="colorSelector" Margin="0,10" Height="20" Background="Black" Click="Change_Color"/>
+
+                </StackPanel>
+            </GroupBox>
+            <RadioButton x:Name="Pen" IsChecked="True" Margin="10,0,0,0">Pen</RadioButton>
+            <RadioButton x:Name="Line" Margin="10,5,0,0">Line</RadioButton>
+            <RadioButton x:Name="Rectangle" Margin="10,5,0,0">Rectangle</RadioButton>
+            <RadioButton x:Name="Circle" Margin="10,5,0,0">Circle</RadioButton>
+            <RadioButton x:Name="Bucket" Margin="10,5,0,0" >Bucket</RadioButton>
+            <RadioButton x:Name="Eraser" Margin="10,5,0,0">Eraser</RadioButton>
+        </StackPanel>
+        <Canvas.Background>
+            <SolidColorBrush Color="White" Opacity="0"/>
+        </Canvas.Background>
+    </Canvas>
+</Window>
