@@ -7,6 +7,7 @@ A simple painting application created in **(WPF) Windows Presentations Forms**, 
 |---------|-------------|
 | **Ctrl+Z** | Undo last drawn shape |
 | **Ctrl+Y** | Redo last drawn shape |
+##
 
 
 ![MyPaint Screen Shot](https://github.com/EdvinAndre/MyPaint/blob/main/Image/ScreenShot_MyPaint.PNG)
