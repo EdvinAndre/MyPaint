@@ -16,7 +16,7 @@ namespace NewMyPaint
     /// </summary>
     public partial class MainWindow : Window
     {
-        Point point = new Point();
+        Point Point = new Point();
         SolidColorBrush BrushCl = Brushes.Black;
         LinkedList<Shape> PaintingUndoHistory = new LinkedList<Shape>();
         LinkedList<Shape> PaintingRedoHistory = new LinkedList<Shape>();
@@ -34,12 +34,12 @@ namespace NewMyPaint
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ButtonState == MouseButtonState.Pressed)
-                point = e.GetPosition(this);
+                Point = e.GetPosition(this);
         }
 
         private void Canvas_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (point.X > 120 && e.GetPosition(this).X > 120)
+            if (Point.X > 120 && e.GetPosition(this).X > 120)
             {
                 if (Pen.IsChecked == true)
                 {
@@ -54,7 +54,7 @@ namespace NewMyPaint
                         line.X2 = e.GetPosition(this).X;
                         line.Y2 = e.GetPosition(this).Y;
 
-                        point = e.GetPosition(this);
+                        Point = e.GetPosition(this);
 
                         paintCanvas.Children.Add(line);
                         CurrentLine.AddLast(line);
@@ -83,6 +83,7 @@ namespace NewMyPaint
                                 pathSegments.Add(lineSegment);
                             }
                         }
+                        
                         CurrentLine.Clear();
                         pathFigure.Segments = pathSegments;
                         pathFigures.Add(pathFigure);
@@ -105,8 +106,8 @@ namespace NewMyPaint
 
                         line.Stroke = BrushCl;
                         line.StrokeThickness = Convert.ToDouble(((ComboBoxItem)Size.SelectedItem).Tag);
-                        line.X1 = point.X;
-                        line.Y1 = point.Y;
+                        line.X1 = Point.X;
+                        line.Y1 = Point.Y;
                         line.X2 = e.GetPosition(this).X;
                         line.Y2 = e.GetPosition(this).Y;
 
@@ -129,9 +130,9 @@ namespace NewMyPaint
 
                         rectangle.Stroke = BrushCl;
                         rectangle.StrokeThickness = Convert.ToDouble(((ComboBoxItem)Size.SelectedItem).Tag);
-                        rectangle.Width = Math.Abs(point.X - e.GetPosition(this).X);
-                        rectangle.Height = Math.Abs(point.Y - e.GetPosition(this).Y);
-                        rectangle.Margin = new Thickness(point.X, point.Y, 0, 0);
+                        rectangle.Width = Math.Abs(Point.X - e.GetPosition(this).X);
+                        rectangle.Height = Math.Abs(Point.Y - e.GetPosition(this).Y);
+                        rectangle.Margin = new Thickness(Point.X, Point.Y, 0, 0);
                         rectangle.Fill = Brushes.Transparent;
                         rectangle.MouseDown += Mouse_DownInsideShape;
 
@@ -154,9 +155,9 @@ namespace NewMyPaint
 
                         circle.Stroke = BrushCl;
                         circle.StrokeThickness = Convert.ToDouble(((ComboBoxItem)Size.SelectedItem).Tag);
-                        circle.Width = Math.Abs(point.X - e.GetPosition(this).X);
-                        circle.Height = Math.Abs(point.Y - e.GetPosition(this).Y);
-                        circle.Margin = new Thickness(point.X, point.Y, 0, 0);
+                        circle.Width = Math.Abs(Point.X - e.GetPosition(this).X);
+                        circle.Height = Math.Abs(Point.Y - e.GetPosition(this).Y);
+                        circle.Margin = new Thickness(Point.X, Point.Y, 0, 0);
                         circle.Fill = Brushes.Transparent;
                         circle.MouseDown += Mouse_DownInsideShape;
 
@@ -177,12 +178,12 @@ namespace NewMyPaint
 
                         line.Stroke = new SolidColorBrush(Color.FromRgb(255, 255, 255));
                         line.StrokeThickness = 8;
-                        line.X1 = point.X;
-                        line.Y1 = point.Y;
+                        line.X1 = Point.X;
+                        line.Y1 = Point.Y;
                         line.X2 = e.GetPosition(this).X;
                         line.Y2 = e.GetPosition(this).Y;
 
-                        point = e.GetPosition(this);
+                        Point = e.GetPosition(this);
 
                         paintCanvas.Children.Add(line);
                     }
