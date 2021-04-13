@@ -21,7 +21,7 @@ namespace NewMyPaint
         LinkedList<Shape> PaintingUndoHistory = new LinkedList<Shape>();
         LinkedList<Shape> PaintingRedoHistory = new LinkedList<Shape>();
         LinkedList<Shape> CurrentLine = new LinkedList<Shape>();
-        string filename;
+        string FileName;
         Line PrevLine;
         Rectangle PrevRectangle;
         Ellipse PrevCircle;
@@ -258,14 +258,14 @@ namespace NewMyPaint
 
             if (result == true)
             {
-                filename = openFile.FileName;
+                FileName = openFile.FileName;
                 Image imageFile = new Image();
                 imageFile.Margin = new Thickness(120, 0, 0, 0);
 
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.UriSource = new Uri(filename);
+                bitmapImage.UriSource = new Uri(FileName);
                 bitmapImage.EndInit();
 
                 imageFile.Source = bitmapImage;
@@ -283,8 +283,8 @@ namespace NewMyPaint
 
             if (result == true)
             {
-                filename = saveFile.FileName;
-                var extension = System.IO.Path.GetExtension(filename);
+                FileName = saveFile.FileName;
+                var extension = System.IO.Path.GetExtension(FileName);
                 BitmapEncoder bmpEncoder;
                 RenderTargetBitmap rtb = new RenderTargetBitmap((int)paintCanvas.RenderSize.Width, (int)paintCanvas.RenderSize.Height, 96, 96, PixelFormats.Default);
                 CroppedBitmap crop = new CroppedBitmap(rtb, new Int32Rect(120, 0, (int)paintCanvas.RenderSize.Width - 120, (int)paintCanvas.RenderSize.Height));
@@ -305,7 +305,7 @@ namespace NewMyPaint
                         break;
                 }
 
-                using (FileStream stream = new FileStream(filename, FileMode.Create))
+                using (FileStream stream = new FileStream(FileName, FileMode.Create))
                 {
                     bmpEncoder.Save(stream);
                     stream.Dispose();
@@ -337,15 +337,8 @@ namespace NewMyPaint
                     break;
             }
 
-            try
-            {
-                if (File.Exists(filename))
-                    File.Delete(filename);
-            }
-            catch (IOException ioe)
-            {
-                System.Windows.Forms.MessageBox.Show(ioe.Message);
-            }
+            if (File.Exists(FileName))
+                File.Delete(FileName);
 
             using (FileStream stream = new FileStream(filename, FileMode.Create))
             {
