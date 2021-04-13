@@ -10,4 +10,4 @@ A simple painting application created in **(WPF) Windows Presentations Forms**, 
 ## Screen Shot
 
 
-![MyPaint Screen Shot](https://github.com/EdvinAndre/MyPaint/blob/main/Image/ScreenShot_MyPaint.PNG)
+
