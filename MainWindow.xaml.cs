@@ -338,9 +338,6 @@ namespace NewMyPaint
                     break;
             }
 
-            if (File.Exists(FileName))
-                File.Delete(FileName);
-
             using (FileStream stream = new FileStream(filename, FileMode.Create))
             {
                 bmpEncoder.Save(stream);
