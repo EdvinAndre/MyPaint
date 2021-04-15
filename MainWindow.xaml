@@ -14,7 +14,7 @@
         <KeyBinding Gesture="Control+Z" Command="Undo"></KeyBinding>
         <KeyBinding Gesture="Control+Y" Command="Redo"></KeyBinding>
     </Window.InputBindings>
-    <Canvas Name="paintCanvas" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" AllowDrop="True" Drop="paintCanvas_Drop">
+    <Canvas Name="paintCanvas" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" AllowDrop="True" Drop="paintCanvas_FileDrop">
         <Rectangle x:Name="BackgroundColor" Width="{Binding ActualWidth, ElementName=paintCanvas}"
                    Height="{Binding ActualHeight, ElementName=paintCanvas}"
                    Fill="White" MouseDown="Mouse_DownInsideShape">
