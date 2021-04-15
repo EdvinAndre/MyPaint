@@ -229,7 +229,7 @@ namespace NewMyPaint
             }
         }
 
-        private void paintCanvas_Drop(object sender, System.Windows.DragEventArgs e)
+        private void paintCanvas_FileDrop(object sender, System.Windows.DragEventArgs e)
         {
             if (e.Data.GetDataPresent(System.Windows.DataFormats.FileDrop))
             {
